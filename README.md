@@ -4,6 +4,10 @@
 This project demonstrates how to create a secure user management system on a Red Hat Enterprise Linux (RHEL) virtual machine.  
 The focus is on enforcing least privilege, using SSH key-based authentication, and disabling password authentication.
 
+## creation of VM and 
+Open dhashboard of azure cloudand click on create resourse 
+
+
 ## Steps Implemented
 
 ### 1. User and Group Setup
@@ -13,6 +17,8 @@ sudo groupadd developers
 sudo groupadd admins
 sudo groupadd testers
 ```
+
+![Creating groups](img/creatinggrpusr.png)
 
 Created users and assigned them to groups:
 ```bash
@@ -31,6 +37,8 @@ grep dev1 /etc/passwd
 grep admin1 /etc/passwd
 grep tester1 /etc/passwd
 ```
+
+![Creating groups](img/disrootlogenablefirewall.png)
 
 ### 2. Sudo Rights
 Configured `visudo` to give full sudo access only to the `admins` group, while restricting developers and testers to limited commands.
@@ -57,6 +65,8 @@ PasswordAuthentication no
 AuthorizedKeysFile .ssh/authorized_keys
 ```
 
+![Creating groups](img/sshdconfigedit.png)
+
 Restarted SSH service:
 ```bash
 sudo systemctl restart sshd
@@ -74,6 +84,8 @@ sudo mkdir /testData
 sudo chown tester1:testers /testData
 sudo chmod 770 /testData
 ```
+
+![Creating groups](img/disrootlogenablefirewall.png)
 
 This ensures only the respective users/groups can access their data.
 
